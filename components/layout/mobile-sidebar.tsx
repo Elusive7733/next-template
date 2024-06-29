@@ -1,7 +1,8 @@
 'use client'
 import { DashboardNav } from '@/components/dashboard-nav'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { navItems } from '@/constants/data'
+import { navItems } from '@/constants/links'
+
 import { MenuIcon } from 'lucide-react'
 import { useState } from 'react'
 
