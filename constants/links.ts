@@ -71,7 +71,8 @@ export const internalLinks = {
 
 const userEndpoints = {
     allowUser: 'allow_user',
-    get_all: 'user/get_all',
+    get_all: 'user/get/all',
+    get: 'user/get?user_id',
     update: 'api/user/update',
     delete: 'api/user/delete'
 }

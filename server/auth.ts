@@ -11,6 +11,8 @@ export async function login(email: string, password: string) {
             body: JSON.stringify({ email, password })
         })
 
+        console.log(response)
+
         if (response.ok) {
             const data = await response.json()
             return data
