@@ -10,6 +10,7 @@ import {
     FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import useToken from '@/hooks/useToken'
 import { login } from '@/server/auth'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
@@ -24,6 +25,8 @@ const formSchema = z.object({
 type UserFormValue = z.infer<typeof formSchema>
 
 export default function UserAuthForm() {
+    const token = useToken()
+
     const [loading, setLoading] = useState(false)
     const defaultValues = {
         email: '',
