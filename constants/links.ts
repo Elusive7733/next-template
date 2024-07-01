@@ -4,7 +4,7 @@ const enviournment = process.env.NEXT_PUBLIC_ENVIRONMENT ?? 'development'
 
 const getBackendLink = () => {
     if (enviournment === 'development') {
-        return 'http://127.0.0.1:8000/api'
+        return 'http://127.0.0.1:8000/admin'
     }
     return 'your-backend-prod-link'
 }
@@ -40,6 +40,13 @@ export const navItems: NavItem[] = [
         href: '/dashboard/profile',
         icon: 'profile',
         label: 'profile'
+    },
+
+    {
+        title: 'Login',
+        href: '/',
+        icon: 'login',
+        label: 'login'
     }
 ]
 
@@ -71,7 +78,7 @@ const userEndpoints = {
 }
 
 const authEndpoints = {
-    login: 'login'
+    login: 'auth/login'
 }
 
 export const apiEndpoints = {
