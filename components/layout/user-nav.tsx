@@ -13,11 +13,14 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { internalLinks } from '@/constants/links'
 import useToken from '@/hooks/useToken'
+import { cn } from '@/lib/utils'
+import { useTheme } from 'next-themes'
 import { useRouter } from 'next/navigation'
 
 export function UserNav() {
     const [, tokenLoading, , removeToken] = useToken()
     const router = useRouter()
+    const { theme } = useTheme()
 
     const handleLogout = () => {
         removeToken()
@@ -33,7 +36,13 @@ export function UserNav() {
             <DropdownMenuTrigger asChild>
                 <Button variant='ghost' className='relative h-8 w-8 rounded-full'>
                     <Avatar className='h-8 w-8'>
-                        <AvatarImage src={'avatars/01.png'} alt={'avatar'} />
+                        <AvatarImage
+                            src={'avatars/avatar.png'}
+                            alt={'avatar'}
+                            className={cn(
+                                (theme === 'dark' || theme === 'system') && 'invert'
+                            )}
+                        />
                     </Avatar>
                 </Button>
             </DropdownMenuTrigger>
