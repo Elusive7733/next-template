@@ -8,10 +8,16 @@
 
 ## Features
 
--   **Best Practices**: Uses the latest Next.js features and follows community best practices.
--   **Styled with Tailwind**: Highly customizable and responsive design.
--   **Pre-made Components**: Dashboard and other useful components ready to use.
--   **Font Optimization**: Integration with `next/font` for Google Font - Inter.
+-   **Framework and Styling**: Utilizes Next.js 14 with Tailwind CSS for a customizable and responsive design.
+-   **Optimal Folder Structure**: Supports scalability from small to enterprise-level projects.
+-   **Best Practices**: Adheres to the latest Next.js features and community guidelines.
+-   **Extendible API Layer**: Facilitates easy integration and customization of backend logic.
+-   **Performance Optimization**: Designed to reduce unnecessary renders, enhancing application speed and user experience.
+-   **Responsive Design**: Ensures functionality across all devices.
+-   **Custom Theming**: Includes a theme provider for style consistency throughout the application.
+-   **Pre-Made Components**: Ready-to-use dashboard and utility components.
+-   **Font Optimization**: Integrated with `next/font` for efficient Google Fonts usage.
+-   **Easy Setup and Deployment**: Detailed instructions for setup, development, and deployment, including support for Vercel platform.
 
 ---
 
