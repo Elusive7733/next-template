@@ -1,27 +1,43 @@
-// useToken.ts
 'use client'
 
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import { internalLinks } from '@/constants/links'
+import { useCallback, useEffect, useState } from 'react'
 
-const useToken = (): string | null => {
+type UseTokenReturnType = [
+    token: string | null,
+    tokenLoading: boolean,
+    updateToken: (newToken: string | null) => void,
+    removeToken: () => void
+]
+
+const useToken = (): UseTokenReturnType => {
     const [token, setToken] = useState<string | null>(null)
-    const router = useRouter()
+    const [tokenLoading, setTokenLoading] = useState<boolean>(true)
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const tokenFromStorage = localStorage.getItem('token')
-
-            if (tokenFromStorage && tokenFromStorage.length) {
-                setToken(tokenFromStorage) // Set token if found
-            } else {
-                router.push(internalLinks.login) // Redirect if token is not found
-            }
+        const tokenFromStorage = localStorage.getItem('token')
+        if (tokenFromStorage) {
+            setToken(tokenFromStorage)
+        } else {
+            localStorage.removeItem('token')
         }
-    }, [router])
+        setTokenLoading(false)
+    }, [])
 
-    return token
+    const updateToken = useCallback((newToken: string | null = null): void => {
+        if (newToken) {
+            localStorage.setItem('token', newToken)
+        } else {
+            localStorage.removeItem('token')
+        }
+        setToken(newToken)
+    }, [])
+
+    const removeToken = useCallback((): void => {
+        localStorage.removeItem('token')
+        setToken(null)
+    }, [])
+
+    return [token, tokenLoading, updateToken, removeToken]
 }
 
 export default useToken

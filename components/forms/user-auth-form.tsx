@@ -10,9 +10,11 @@ import {
     FormMessage
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
+import { internalLinks } from '@/constants/links'
 import useToken from '@/hooks/useToken'
 import { login } from '@/server/auth'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
@@ -25,9 +27,14 @@ const formSchema = z.object({
 type UserFormValue = z.infer<typeof formSchema>
 
 export default function UserAuthForm() {
-    const token = useToken()
-
+    const [token, tokenLoading, updateToken] = useToken()
+    const router = useRouter()
     const [loading, setLoading] = useState(false)
+
+    if (token && !tokenLoading) {
+        router.push(internalLinks.dashboard)
+    }
+
     const defaultValues = {
         email: '',
         password: ''
@@ -39,13 +46,17 @@ export default function UserAuthForm() {
     })
 
     const onSubmit = async (data: UserFormValue) => {
+        setLoading(true)
         try {
-            setLoading(true)
             const response = await login(data.email, data.password)
             console.log(response)
+            if (response.token) {
+                updateToken(response.token)
+                router.push(internalLinks.dashboard)
+            }
         } catch (error) {
             if (error instanceof Error) {
-                console.error(error.stack)
+                console.error(error.message)
             }
             return { error: 'An error occurred' }
         } finally {

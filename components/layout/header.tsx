@@ -1,4 +1,3 @@
-import ThemeToggle from '@/components/layout/ThemeToggle/theme-toggle'
 import { cn } from '@/lib/utils'
 import { MobileSidebar } from './mobile-sidebar'
 import { UserNav } from './user-nav'
@@ -10,7 +9,7 @@ export default function Header() {
             <nav className='flex h-14 items-center justify-between px-4'>
                 <div className='hidden lg:block'>
                     <Link
-                        href={'https://github.com/Kiranism/next-shadcn-dashboard-starter'}
+                        href={'https://github.com/Elusive7733/next-template'}
                         target='_blank'
                     >
                         <svg
@@ -33,7 +32,6 @@ export default function Header() {
 
                 <div className='flex items-center gap-2'>
                     <UserNav />
-                    <ThemeToggle />
                 </div>
             </nav>
         </div>

@@ -15,6 +15,7 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang='en' suppressHydrationWarning>
+            {/* Remove the dark keyword to enable other themes */}
             <body className={`${inter.className} dark overflow-hidden`}>
                 <NextTopLoader />
                 <Toaster />

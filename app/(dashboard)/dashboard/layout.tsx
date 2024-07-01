@@ -1,13 +1,23 @@
+'use client'
+
 import Header from '@/components/layout/header'
 import Sidebar from '@/components/layout/sidebar'
-import type { Metadata } from 'next'
-
-export const metadata: Metadata = {
-    title: 'Next Shadcn Dashboard Starter',
-    description: 'Basic dashboard with Next.js and Shadcn'
-}
+import { internalLinks } from '@/constants/links'
+import useToken from '@/hooks/useToken'
+import { useRouter } from 'next/navigation'
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+    const router = useRouter()
+    const [token, tokenLoading] = useToken()
+
+    if (!tokenLoading && !token) {
+        router.push(internalLinks.login)
+    }
+
+    if (tokenLoading) {
+        return <div>Loading...</div>
+    }
+
     return (
         <>
             <Header />
